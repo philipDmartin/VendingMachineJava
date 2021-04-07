@@ -3,12 +3,11 @@ package com.vendingMachineJava;
 import javax.swing.*;
 import java.awt.*;
 
-public class Form1 {
+public class vmForm {
 
-    private JPanel Form1;
+    public JPanel vmPanel;
 
     private JButton insertQuarterButton;
-
 
     private JButton ejectQuarterButton;
 
@@ -18,24 +17,12 @@ public class Form1 {
 
     private JButton transactionHistoryButton;
 
-    private JTextArea Screen;
+    private JTextArea vmViewer;
 
-    private JTextArea stateScreenTextArea;
+    private JTextArea stateViewer;
 
-    public Form1 (JButton insertQuarterButton, JButton ejectQuarterButton, JButton spriteButton, JButton cokeButton, JButton transactionHistoryButton, JTextArea Screen, JTextArea stateScreenTextArea) {
-        this.insertQuarterButton = insertQuarterButton;
-        this.ejectQuarterButton = ejectQuarterButton;
-        this.spriteButton = spriteButton;
-        this.cokeButton = cokeButton;
-        this.transactionHistoryButton = transactionHistoryButton;
-        this.Screen = Screen;
-        this.stateScreenTextArea = stateScreenTextArea;
-    }
+    public vmForm() {
 
-    public JTextArea insrtQ() {
-        String butS = "yo";
-        this.Screen = butS;
-        return insrtQ();
     }
 
 //    public JButton getInsertQuarterButton() {
@@ -78,20 +65,32 @@ public class Form1 {
 //        this.transactionHistoryButton = transactionHistoryButton;
 //    }
 //
-    public JTextArea getScreen() {
-        return Screen;
-    }
+//    public JTextArea getVmViewer() {
+//        return vmViewer;
+//    }
+//
+//    public void setVmViewer(JTextArea vmViewer) {
+//        vmViewer = vmViewer;
+//    }
+//
+//    public JTextArea getStateViewer() {
+//        return stateViewer;
+//    }
+//
+//    public void setStateViewer(JTextArea stateViewer) {
+//        this.stateViewer = stateViewer;
+//    }
 
-    public void setScreen(JTextArea screen) {
-        Screen = screen;
+    private void initComp() {
+        // TODO: place custom component creation code here
+        this.vmPanel = new JPanel();
+        this.insertQuarterButton = new JButton();
+        this.ejectQuarterButton = new JButton();
+        this.spriteButton = new JButton();
+        this.cokeButton = new JButton();
+        this.transactionHistoryButton = new JButton();
+        this.vmViewer = new JTextArea();
+        this.stateViewer = new JTextArea();
     }
-//
-//    public JTextArea getStateScreenTextArea() {
-//        return stateScreenTextArea;
-//    }
-//
-//    public void setStateScreenTextArea(JTextArea stateScreenTextArea) {
-//        this.stateScreenTextArea = stateScreenTextArea;
-//    }
 
 }
