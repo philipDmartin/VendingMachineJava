@@ -1,0 +1,16 @@
+INSERT INTO inventory (id, qty, productId, VendingMachineId) values ('1', '12', '1', '1');
+INSERT INTO Inventory (id, qty, productId, VendingMachineId) values ('2', '16', '2', '1');
+
+INSERT INTO product (id, name) values ('1', 'Sprite');
+INSERT INTO product (id, name) values ('2', 'Coke');
+
+INSERT INTO vendingMachine (id, name, pricePerSoda) values ('1', 'Vm1', '1');
+INSERT INTO vendingMachine (id, name, pricePerSoda) values ('2', 'Vm2', '1');
+
+INSERT INTO purchaseTransactions (id, purchaseTotal, purchaseQty, purchaseTime, ProductId, VendingMachineId) values ('1', '1', '1', '2020-12-13', '1', '1');
+INSERT INTO purchaseTransactions (id, purchaseTotal, purchaseQty, purchaseTime, ProductId, VendingMachineId) values ('2', '1', '1', '2020-12-13', '2', '1');
+
+SELECT * FROM inventory
+SELECT * FROM product
+SELECT * FROM vendingmachine
+SELECT * FROM purchasetransactions

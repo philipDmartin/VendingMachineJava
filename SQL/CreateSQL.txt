@@ -1,0 +1,18 @@
+CREATE TABLE VendingMachine (id INT, name VARCHAR(255), pricePerSoda INT, PRIMARY KEY ( id ));
+
+CREATE TABLE Inventory (id INT, qty INT, productId INT, VendingMachineId INT, PRIMARY KEY ( id ));
+
+CREATE TABLE Product (id INT, name VARCHAR(255), PRIMARY KEY ( id ));
+
+CREATE TABLE PurchaseTransactions (id INT, purchaseTotal INT, purchaseQty INT, purchaseTime DATETIME, productId INT, VendingMachineId INT, PRIMARY KEY ( id ));
+
+ALTER TABLE Inventory ADD FOREIGN KEY (VendingMachineId) REFERENCES VendingMachine (id);
+
+ALTER TABLE PurchaseTransactions ADD FOREIGN KEY (VendingMachineId) REFERENCES VendingMachine (id)
+ON DELETE CASCADE;
+
+ALTER TABLE PurchaseTransactions ADD FOREIGN KEY (productId) REFERENCES Product (id)
+ON DELETE CASCADE;
+
+ALTER TABLE Inventory ADD FOREIGN KEY (productId) REFERENCES Product (id)
+ON DELETE CASCADE;
