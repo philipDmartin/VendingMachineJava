@@ -26,10 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="850e15df-2fb1-48bb-9935-ac2c661af674">
-        <schema name="mysql" object-types="table, column, constraint" />
-        <schema name="performance_schema" object-types="table, column, constraint" />
-        <schema name="sys" object-types="view, table, column, constraint" />
-        <schema name="vendingmachinedb" object-types="view, table, column, index, dataset trigger, constraint, procedure, function" />
+        <schema name="vendingmachinedb" object-types="procedure, function, view, table" />
       </connection>
     </loaded-nodes>
   </component>

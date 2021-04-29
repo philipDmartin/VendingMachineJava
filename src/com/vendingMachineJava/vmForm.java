@@ -19,7 +19,7 @@ public class vmForm {
 
     private JTextArea vmViewer;
 
-    private JTextArea stateViewer;
+    public JTextArea stateViewer;
 
     public vmForm() {
 
@@ -73,13 +73,13 @@ public class vmForm {
 //        vmViewer = vmViewer;
 //    }
 //
-//    public JTextArea getStateViewer() {
-//        return stateViewer;
-//    }
-//
-//    public void setStateViewer(JTextArea stateViewer) {
-//        this.stateViewer = stateViewer;
-//    }
+    public JTextArea getStateViewer() {
+        return stateViewer;
+    }
+
+    public void setStateViewer(JTextArea stateViewer) {
+        this.stateViewer = stateViewer;
+    }
 
     private void initComp() {
         // TODO: place custom component creation code here
