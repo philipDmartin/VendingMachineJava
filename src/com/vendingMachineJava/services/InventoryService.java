@@ -3,13 +3,15 @@ package com.vendingMachineJava.services;
 import java.sql.*;
 import com.vendingMachineJava.models.*;
 
+import javax.swing.*;
+
 class MysqlCon{
     public static void main(String args[]){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/vendingmachinedb","Philip Martin","Safety123?");
-//here vendingmachinedb is database name, root is username and password
+            //here vendingmachinedb is database name, root is username and password
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery("select * from product, select * from inventory, select * from purchasetransaction, select * from vendinmachine");
             while(rs.next())
@@ -23,9 +25,9 @@ public class InventoryService {
 
 //    public List<Inventory> GetAll()
 //    {
-//        using (var conn = Connection)
-//        {
-//            conn.Open();
+//
+//
+//            con.Open();
 //            using (var cmd = conn.CreateCommand())
 //            {
 //                cmd.CommandText = @"SELECT
@@ -55,6 +57,6 @@ public class InventoryService {
 //
 //                return types;
 //            }
-//        }
+//
 //    }
 }

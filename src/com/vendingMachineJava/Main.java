@@ -1,21 +1,24 @@
 package com.vendingMachineJava;
-
+import com.vendingMachineJava.vmForm;
 import com.vendingMachineJava.models.*;
+import com.vendingMachineJava.services.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class Main {
 
     public static VendingMachine myVendingMachine;
 
-//    public static InventoryService myInventoryService;
+    public static InventoryService myInventoryService;
 
     public static VendingMachineStateEnum programState;
 
+    //STATE MANAGER
     public static void ManageState(VendingMachineStateEnum currentState) {
         Main.programState = currentState;
 
-//        JTextArea stateView = vmForm.Application.OpenForms["Form1"].Controls["stateViewer"] as JTextArea;
+//        myVmForm.stateViewer.setText("hello");
 
         switch (currentState) {
 //            case VendingMachineStateEnum.NOQUARTER:
@@ -34,14 +37,23 @@ public class Main {
         }
     }
 
+    //MAIN IMPLAMENTATION
     public static void main(String[] args) {
         // write your code here
 
-        vmForm myVmForm = new vmForm();
+        vmForm myVmForm = new vmForm() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        };
         JFrame frame = new JFrame("Vending Machine");
         frame.setContentPane(myVmForm.vmPanel);
         frame.setVisible(true);
         frame.setBounds(600, 600, 600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myVmForm.getInsertQuarterButton();
+        myVmForm.getEjectQuarterButton();
+        myVmForm.getSpriteButton();
+        myVmForm.getCokeButton();
     }
 }
