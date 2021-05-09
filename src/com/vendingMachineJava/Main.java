@@ -14,26 +14,28 @@ public class Main {
 
     public static VendingMachineStateEnum programState;
 
+    public static vmForm myVmForm;
+
     //STATE MANAGER
     public static void ManageState(VendingMachineStateEnum currentState) {
         Main.programState = currentState;
 
-//        myVmForm.stateViewer.setText("hello");
+        myVmForm.stateViewer.setText(Main.programState.toString());
 
         switch (currentState) {
-//            case VendingMachineStateEnum.NOQUARTER:
-//                vmForm.ActiveForm.Controls["insertQuarterButton"].Enabled = true; //Insrt
-//
-//                vmForm.ActiveForm.Controls["ejectQuarterButton"].Enabled = false; //Eject
-//
-//                vmForm.ActiveForm.Controls["spriteButton"].Enabled = false; //Sprite
-//                vmForm.ActiveForm.Controls["spriteButton"].Text = "Sprite" + Environment.NewLine + "(" + GetInventory("Sprite") + ")"; //Sprite
-//
-//                vmForm.ActiveForm.Controls["cokeButton"].Enabled = false; //Coke
-//                vmForm.ActiveForm.Controls["cokeButton"].Text = "Coke" + Environment.NewLine + "(" + GetInventory("Coke") + ")"; //Coke
-//
-//                vmForm.ActiveForm.Controls["purchaseTransactionButton"].Enabled = true; //Purchase Transaction
-//                break;
+            case VendingMachineStateEnum.NOQUARTER:
+                vmForm.ActiveForm.Controls["insertQuarterButton"].Enabled = true; //Insrt
+
+                vmForm.ActiveForm.Controls["ejectQuarterButton"].Enabled = false; //Eject
+
+                vmForm.ActiveForm.Controls["spriteButton"].Enabled = false; //Sprite
+                vmForm.ActiveForm.Controls["spriteButton"].Text = "Sprite" + Environment.NewLine + "(" + GetInventory("Sprite") + ")"; //Sprite
+
+                vmForm.ActiveForm.Controls["cokeButton"].Enabled = false; //Coke
+                vmForm.ActiveForm.Controls["cokeButton"].Text = "Coke" + Environment.NewLine + "(" + GetInventory("Coke") + ")"; //Coke
+
+                vmForm.ActiveForm.Controls["purchaseTransactionButton"].Enabled = true; //Purchase Transaction
+                break;
         }
     }
 
@@ -41,7 +43,7 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
 
-        vmForm myVmForm = new vmForm() {
+        myVmForm = new vmForm() {
             @Override
             public void actionPerformed(ActionEvent e) {
             }
@@ -55,5 +57,6 @@ public class Main {
         myVmForm.getEjectQuarterButton();
         myVmForm.getSpriteButton();
         myVmForm.getCokeButton();
+        Main.ManageState(VendingMachineStateEnum.NOQUARTER);
     }
 }

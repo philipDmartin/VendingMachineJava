@@ -21,15 +21,16 @@ public abstract class vmForm implements ActionListener {
 
     private JButton transactionHistoryButton;
 
-    private JTextArea vmViewer;
+    public JTextArea vmViewer;
 
-    private JTextArea stateViewer;
+    public JTextArea stateViewer;
 
 //GETTERS and SETTERS
     public JButton getInsertQuarterButton() {
         this.insertQuarterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 stateViewer.setText("Has Quater");
                 vmViewer.setText("Now You Can Select A Soda");
                 spriteButton.setEnabled(true);
