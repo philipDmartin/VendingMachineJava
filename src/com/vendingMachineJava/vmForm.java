@@ -1,5 +1,7 @@
 package com.vendingMachineJava;
 
+import com.vendingMachineJava.models.VendingMachineStateEnum;
+
 import javax.swing.*;
 //import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,15 +13,15 @@ public abstract class vmForm implements ActionListener {
 //COMPONENTS
     public JPanel vmPanel;
 
-    private JButton insertQuarterButton;
+    public JButton insertQuarterButton;
 
-    private JButton ejectQuarterButton;
+    public JButton ejectQuarterButton;
 
-    private JButton spriteButton;
+    public JButton spriteButton;
 
-    private JButton cokeButton;
+    public JButton cokeButton;
 
-    private JButton transactionHistoryButton;
+    public JButton transactionHistoryButton;
 
     public JTextArea vmViewer;
 
@@ -30,12 +32,8 @@ public abstract class vmForm implements ActionListener {
         this.insertQuarterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                stateViewer.setText("Has Quater");
+                Main.ManageState(VendingMachineStateEnum.HASQUATER);
                 vmViewer.setText("Now You Can Select A Soda");
-                spriteButton.setEnabled(true);
-                cokeButton.setEnabled(true);
-                ejectQuarterButton.setEnabled(true);
             }
         });
 
@@ -50,11 +48,8 @@ public abstract class vmForm implements ActionListener {
       this.ejectQuarterButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            stateViewer.setText("Has No Quater");
-            vmViewer.setText("Please Select A Soda");
-            spriteButton.setEnabled(false);
-            cokeButton.setEnabled(false);
-            ejectQuarterButton.setEnabled(false);
+            Main.ManageState(VendingMachineStateEnum.NOQUARTER);
+            vmViewer.setText("Please Insert A Quater");
         }
     });
 
@@ -69,11 +64,8 @@ public abstract class vmForm implements ActionListener {
         this.spriteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                stateViewer.setText("Sold");
+                Main.ManageState(VendingMachineStateEnum.SOLD);
                 vmViewer.setText("You Have Selected Sprite Now Despensing");
-                spriteButton.setEnabled(false);
-                cokeButton.setEnabled(false);
-                ejectQuarterButton.setEnabled(false);
             }
         });
 
@@ -88,11 +80,8 @@ public abstract class vmForm implements ActionListener {
         this.cokeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                stateViewer.setText("Sold");
+                Main.ManageState(VendingMachineStateEnum.SOLD);
                 vmViewer.setText("You Have Selected Coke Now Despensing");
-                spriteButton.setEnabled(false);
-                cokeButton.setEnabled(false);
-                ejectQuarterButton.setEnabled(false);
             }
         });
 
