@@ -4,7 +4,7 @@ import java.util.Date;
 import java.io.Serializable;
 
 //java beans must be Serializable
-public class PurchaseTransactions implements Serializable {
+public class PurchaseTransaction implements Serializable {
 
     private int Id;
 
@@ -23,13 +23,13 @@ public class PurchaseTransactions implements Serializable {
     private VendingMachine VendingMachine;
 
     //java beans require empty constructor
-    public PurchaseTransactions() {
+    public PurchaseTransaction() {
 
     }
 
     //because we have an empty constructor that meets the requirements for a java bean
     //we can now use a constructor with the filled out arguments
-    public PurchaseTransactions(int Id, int PurchaseTotal, int PurchaseQty, Date Time, int ProductId, Product Product, int VendingMachineId, VendingMachine VendingMachine) {
+    public PurchaseTransaction(int Id, int PurchaseTotal, int PurchaseQty, Date Time, int ProductId, Product Product, int VendingMachineId, VendingMachine VendingMachine) {
 
         this.Id = Id;
         this.PurchaseTotal = PurchaseTotal;
