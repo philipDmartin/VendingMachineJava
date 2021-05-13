@@ -8,14 +8,15 @@ import java.sql.*;
 import java.sql.Time;
 import java.util.List;
 import java.lang.Object;
-
-
+import java.time.*;
 
 public class PurchaseTransactionService
 {
     //Connection to SQL Database
     private String _connectionString;
     private Connection connection;
+
+    private Product product;
 
     public Connection getCon() { return this.connection; }
     public void setCon(Connection connection) { this.connection = connection; }
@@ -40,53 +41,77 @@ public class PurchaseTransactionService
             connection = DriverManager.getConnection(_connectionString);
 
             Statement stmt=connection.createStatement();
-            ResultSet rs=stmt.executeQuery("SELECT PurchaseTotal, PurchaseQty, Time, p.[Name] AS ProductName, v.[Name] AS VendingMachineName FROM PurchaseTransactions pt JOIN Product p ON pt.ProductId = p.Id JOIN VendingMachine v ON pt.VendingMachineId = v.Id");
+            ResultSet rs=stmt.executeQuery("SELECT PurchaseTotal, PurchaseQty, Time, p.[Id] AS ProductId, p.[Name] AS ProductName, v.[Id] AS VendingMachineId, v.[Name] AS VendingMachineName, v.[PricePerSoda] AS VendingMachinePricePerSoda FROM PurchaseTransactions pt JOIN Product p ON pt.ProductId = p.Id JOIN VendingMachine v ON pt.VendingMachineId = v.Id");
 
 //            types = new Variant();
-            Variant types = new List<PurchaseTransaction>();
+
+            List<? extends PurchaseTransaction> types = new List<PurchaseTransaction>;
+
+//            types.add()
+//            Variant types = new List<PurchaseTransaction>();
+
             while(rs.next())
+            {
+//                var type = new PurchaseTransaction();
+//                PurchaseTransaction type = new PurchaseTransaction();
+
+                {
+                   int PurchaseTotal = rs.getInt(0);
+                   int PurchaseQty = rs.getInt(1);
+                   Date Time = rs.getDate(2);
+
+                   product = new Product(rs.getInt(3), rs.getString(4));
+
+                   VendingMachine vendingMachine = new VendingMachine(rs.getInt(7), rs.getString(8), rs.getInt(9));
+
+                   var type = new PurchaseTransaction(1, 1, 1, null, 1, null, 1, null);
+                };
+
+                types.add(type);
+            }
+
                 System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
-            connection.close();
+                connection.close();
 
             } catch(Exception e){ System.out.println(e);}
 
 //            using (var cmd = conn.CreateCommand())
-            {
-                cmd.CommandText = @"SELECT
-                PurchaseTotal,
-                        PurchaseQty,
-                        Time,
-                        p.[Name] AS ProductName,
-                v.[Name] AS VendingMachineName
-                FROM PurchaseTransactions pt
-                JOIN Product p ON pt.ProductId = p.Id
-                JOIN VendingMachine v ON pt.VendingMachineId = v.Id";
-
-                var reader = cmd.ExecuteReader();
-                var types = new List<PurchaseTransaction>();
-                while (reader.Read())
-                {
-                    var type = new PurchaseTransaction()
-                    {
-                        PurchaseTotal = reader.GetInt32(reader.GetOrdinal("PurchaseTotal")),
-                        PurchaseQty = reader.GetInt32(reader.GetOrdinal("PurchaseQty")),
-                        Time = reader.GetDateTime(reader.GetOrdinal("Time")),
-                        Product = new Product
-                    {
-                        Name = reader.GetString(reader.GetOrdinal("ProductName"))
-                    },
-                        VendingMachine = new VendingMachine
-                    {
-                        Name = reader.GetString(reader.GetOrdinal("VendingMachineName"))
-                    },
-                    };
-                    types.Add(type);
-                }
-
-                reader.Close();
-
-                return types;
-            }
+//            {
+//                cmd.CommandText = @"SELECT
+//                PurchaseTotal,
+//                        PurchaseQty,
+//                        Time,
+//                        p.[Name] AS ProductName,
+//                v.[Name] AS VendingMachineName
+//                FROM PurchaseTransactions pt
+//                JOIN Product p ON pt.ProductId = p.Id
+//                JOIN VendingMachine v ON pt.VendingMachineId = v.Id";
+//
+//                var reader = cmd.ExecuteReader();
+//                var types = new List<PurchaseTransaction>();
+//                while (reader.Read())
+//                {
+//                    var type = new PurchaseTransaction()
+//                    {
+//                        PurchaseTotal = reader.GetInt32(reader.GetOrdinal("PurchaseTotal")),
+//                        PurchaseQty = reader.GetInt32(reader.GetOrdinal("PurchaseQty")),
+//                        Time = reader.GetDateTime(reader.GetOrdinal("Time")),
+//                        Product = new Product
+//                    {
+//                        Name = reader.GetString(reader.GetOrdinal("ProductName"))
+//                    },
+//                        VendingMachine = new VendingMachine
+//                    {
+//                        Name = reader.GetString(reader.GetOrdinal("VendingMachineName"))
+//                    },
+//                    };
+//                    types.Add(type);
+//                }
+//
+//                reader.Close();
+//
+//                return types;
+//            }
   //      }
     }
 

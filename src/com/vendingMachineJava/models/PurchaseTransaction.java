@@ -2,6 +2,7 @@ package com.vendingMachineJava.models;
 
 import java.util.Date;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 //java beans must be Serializable
 public class PurchaseTransaction implements Serializable {
@@ -16,27 +17,27 @@ public class PurchaseTransaction implements Serializable {
 
     private int ProductId;
 
-    private Product Product;
+    private Product product;
 
     private int VendingMachineId;
 
     private VendingMachine VendingMachine;
 
     //java beans require empty constructor
-    public PurchaseTransaction() {
-
-    }
+//    public PurchaseTransaction() {
+//
+//    }
 
     //because we have an empty constructor that meets the requirements for a java bean
     //we can now use a constructor with the filled out arguments
-    public PurchaseTransaction(int Id, int PurchaseTotal, int PurchaseQty, Date Time, int ProductId, Product Product, int VendingMachineId, VendingMachine VendingMachine) {
+    public PurchaseTransaction(int Id, int PurchaseTotal, int PurchaseQty, Date Time, int ProductId, Product product, int VendingMachineId, VendingMachine VendingMachine) {
 
         this.Id = Id;
         this.PurchaseTotal = PurchaseTotal;
         this.PurchaseQty = PurchaseQty;
         this.Time = Time;
         this.ProductId = ProductId;
-        this.Product = Product;
+        this.product = product;
         this.VendingMachineId = VendingMachineId;
         this.VendingMachine = VendingMachine;
     }
@@ -93,12 +94,12 @@ public class PurchaseTransaction implements Serializable {
 
     //getter for property Product
     public Product getProduct() {
-        return Product;
+        return product;
     }
 
     //setter for property ProductId
     public void setProduct(Product Product) {
-        this.Product = Product;
+        this.product = Product;
     }
 
     //getter for property VendingMachineId
