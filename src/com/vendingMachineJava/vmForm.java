@@ -1,11 +1,14 @@
 package com.vendingMachineJava;
 
+import com.vendingMachineJava.models.PurchaseTransaction;
+import com.vendingMachineJava.services.*;
 import com.vendingMachineJava.models.VendingMachineStateEnum;
 
 import javax.swing.*;
 //import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 //import javax.swing.JOptionPane;
 
 public abstract class vmForm implements ActionListener {
@@ -93,10 +96,30 @@ public abstract class vmForm implements ActionListener {
     }
 
     public JButton getTransactionHistoryButton() {
+
+        PurchaseTransactionService myPurchaseTransactionService;
+        List<PurchaseTransaction> myPurchaseTransactionList;
+
+        myPurchaseTransactionService = new PurchaseTransactionService();
+        myPurchaseTransactionList = myPurchaseTransactionService.GetAll();
+
+        Main.ManageState(Main.programState);
+
+        String strAllPurchaseTransactions = "";
+
+        for (PurchaseTransaction purchaseTransaction : myPurchaseTransactionList) {
+            strAllPurchaseTransactions += "Quarters Amount:" + " " + purchaseTransaction.getPurchaseTotal() + ", " + "Poduct:" + " " + purchaseTransaction.getProduct().getName() + ", " + "Qty:" + " " + purchaseTransaction.getPurchaseQty() + ", " + "Timestamp:" + " " + purchaseTransaction.getTime() + ", " + "Machine:" + " " + purchaseTransaction.VendingMachine().Name;
+            strAllPurchaseTransactions += System.lineSeparator();
+
+        }
+
+        vmViewer.setText(strAllPurchaseTransactions);
+
         return transactionHistoryButton;
     }
 
     public void setTransactionHistoryButton(JButton transactionHistoryButton) {
+
         this.transactionHistoryButton = transactionHistoryButton;
     }
 

@@ -6,74 +6,77 @@ import com.vendingMachineJava.models.VendingMachine;
 
 import java.sql.*;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.lang.Object;
 import java.time.*;
+import java.sql.Driver;
 
-public class PurchaseTransactionService
-{
+public class PurchaseTransactionService {
     //Connection to SQL Database
     private String _connectionString;
     private Connection connection;
 
     private Product product;
 
-    public Connection getCon() { return this.connection; }
-    public void setCon(Connection connection) { this.connection = connection; }
 
-    public PurchaseTransactionService()
-    {
-        _connectionString = "jdbc:mysql://localhost:3306/vendingmachinedb\",\"Philip Martin\",\"Safety123?";
+    public Connection getCon() {
+        return this.connection;
     }
 
-//    public Connection Connection;
-//    {
-//        get { return new Connection(_connectionString); }
-//    }
+    public void setCon(Connection connection) {
+        this.connection = connection;
+    }
+
+
+    public PurchaseTransactionService() {
+
+        _connectionString = "jdbc:mysql://localhost/vendingmachinedb?user=Philip" + " " + "Martin&password=Safety123?";
+    }
 
     //Get All Controller
-    public List<PurchaseTransaction> GetAll()
-    {
-//        using (var conn = connection)
-      // {
-//        Connection.open()
-        try{
+    public List<PurchaseTransaction> GetAll() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(_connectionString);
 
-            Statement stmt=connection.createStatement();
-            ResultSet rs=stmt.executeQuery("SELECT PurchaseTotal, PurchaseQty, Time, p.[Id] AS ProductId, p.[Name] AS ProductName, v.[Id] AS VendingMachineId, v.[Name] AS VendingMachineName, v.[PricePerSoda] AS VendingMachinePricePerSoda FROM PurchaseTransactions pt JOIN Product p ON pt.ProductId = p.Id JOIN VendingMachine v ON pt.VendingMachineId = v.Id");
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT PurchaseTotal, PurchaseQty, Time, p.[Id] AS ProductId, p.[Name] AS ProductName, v.[Id] AS VendingMachineId, v.[Name] AS VendingMachineName, v.[PricePerSoda] AS VendingMachinePricePerSoda FROM PurchaseTransactions pt JOIN Product p ON pt.ProductId = p.Id JOIN VendingMachine v ON pt.VendingMachineId = v.Id");
 
-//            types = new Variant();
+            List<PurchaseTransaction> types = new ArrayList<>();
 
-            List<? extends PurchaseTransaction> types = new List<PurchaseTransaction>;
-
-//            types.add()
-//            Variant types = new List<PurchaseTransaction>();
-
-            while(rs.next())
-            {
-//                var type = new PurchaseTransaction();
-//                PurchaseTransaction type = new PurchaseTransaction();
-
+            while (rs.next()) {
                 {
-                   int PurchaseTotal = rs.getInt(0);
-                   int PurchaseQty = rs.getInt(1);
-                   Date Time = rs.getDate(2);
+                    int PurchaseTotal = rs.getInt(0);
+                    int PurchaseQty = rs.getInt(1);
+                    Date Time = rs.getDate(2);
 
-                   product = new Product(rs.getInt(3), rs.getString(4));
+                    product = new Product(rs.getInt(3), rs.getString(4));
 
-                   VendingMachine vendingMachine = new VendingMachine(rs.getInt(7), rs.getString(8), rs.getInt(9));
+                    VendingMachine vendingMachine = new VendingMachine(rs.getInt(7), rs.getString(8), rs.getInt(9));
 
-                   var type = new PurchaseTransaction(1, 1, 1, null, 1, null, 1, null);
-                };
+                    PurchaseTransaction type = new PurchaseTransaction(1, 1, 1, null, 1, null, 1, null);
 
-                types.add(type);
+                    types.add(type);
+
+                }
+
             }
 
-                System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
-                connection.close();
+            System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+            connection.close();
 
-            } catch(Exception e){ System.out.println(e);}
+            return types;
+
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+
+       return null;
+
+    }
+}
 
 //            using (var cmd = conn.CreateCommand())
 //            {
@@ -110,10 +113,10 @@ public class PurchaseTransactionService
 //
 //                reader.Close();
 //
-//                return types;
+//               return types;
 //            }
   //      }
-    }
+   // }
 
     //Update Controller
 //    public void Update(PurchaseTransactions type)
@@ -162,6 +165,6 @@ public class PurchaseTransactionService
 //
 //                type.Id = (int)cmd.ExecuteScalar();
 //            }
-//        }
-//    }
-}
+  //     }
+//   }
+//}

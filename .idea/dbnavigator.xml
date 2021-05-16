@@ -73,9 +73,9 @@
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
           <database-version value="8.0" />
-          <driver-source value="BUILTIN" />
-          <driver-library value="" />
-          <driver value="" />
+          <driver-source value="EXTERNAL" />
+          <driver-library value="C:\Program Files\MySQL\mysql-connector-java-8.0.25.jar" />
+          <driver value="com.mysql.jdbc.Driver" />
           <url-type value="DATABASE" />
           <host value="localhost" />
           <port value="3306" />

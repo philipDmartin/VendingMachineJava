@@ -1,7 +1,8 @@
 package com.vendingMachineJava;
+import com.vendingMachineJava.services.PurchaseTransactionService;
 import com.vendingMachineJava.vmForm;
 import com.vendingMachineJava.models.*;
-import com.vendingMachineJava.services.*;
+//import com.vendingMachineJava.services.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +11,9 @@ public class Main {
 
     public static VendingMachine myVendingMachine;
 
-    public static InventoryService myInventoryService;
+//    public static InventoryService myInventoryService;
+
+    public static PurchaseTransaction myPurchaseTransaction;
 
     public static VendingMachineStateEnum programState;
 
@@ -53,6 +56,9 @@ public class Main {
                 myVmForm.insertQuarterButton.setEnabled(false); //Insrt
 
                 myVmForm.ejectQuarterButton.setEnabled(true); //Eject
+
+
+
 
 //                if (GetInventory("Sprite")>0)
 //                {
@@ -149,6 +155,7 @@ public class Main {
         myVmForm.getEjectQuarterButton();
         myVmForm.getSpriteButton();
         myVmForm.getCokeButton();
+        myVmForm.getTransactionHistoryButton();
         Main.ManageState(VendingMachineStateEnum.NOQUARTER);
     }
 }
